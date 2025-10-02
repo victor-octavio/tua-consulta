@@ -21,34 +21,34 @@
     <!-- Main content -->
     <div class="flex-1 p-8 md:p-12 flex justify-center items-start">
         <div class="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-6 md:p-10 border border-gray-200">
-            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Agendar Vacina</h1>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Agendar consulta</h1>
 
             <!-- Progress Tabs -->
             <div class="flex space-x-2 mb-8 border-b border-gray-200">
-                <button [class.text-green-600]="isTabAtiva(0)" [class.border-green-500]="isTabAtiva(0)"
-                    [class.text-gray-600]="isTabCompletada(0) && !isTabAtiva(0)" [class.text-gray-400]="isTabFutura(0)"
-                    [class.cursor-not-allowed]="isTabFutura(0)"
+                <button [class.text-green-600]="isTabActive(0)" [class.border-green-500]="isTabActive(0)"
+                    [class.text-gray-600]="isTabCompleted(0) && !isTabActive(0)" [class.text-gray-400]="isTabFuture(0)"
+                    [class.cursor-not-allowed]="isTabFuture(0)"
                     class="flex-1 py-3 font-medium border-b-2 border-transparent transition-colors">
                     <span class="block text-xs mb-1">Passo 1</span>
                     Unidade
                 </button>
-                <button [class.text-green-600]="isTabAtiva(1)" [class.border-green-500]="isTabAtiva(1)"
-                    [class.text-gray-600]="isTabCompletada(1) && !isTabAtiva(1)" [class.text-gray-400]="isTabFutura(1)"
-                    [class.cursor-not-allowed]="isTabFutura(1)"
+                <button [class.text-green-600]="isTabActive(1)" [class.border-green-500]="isTabActive(1)"
+                    [class.text-gray-600]="isTabCompleted(1) && !isTabActive(1)" [class.text-gray-400]="isTabFuture(1)"
+                    [class.cursor-not-allowed]="isTabFuture(1)"
                     class="flex-1 py-3 font-medium border-b-2 border-transparent transition-colors">
                     <span class="block text-xs mb-1">Passo 2</span>
-                    Vacina
+                    Especialidade
                 </button>
-                <button [class.text-green-600]="isTabAtiva(2)" [class.border-green-500]="isTabAtiva(2)"
-                    [class.text-gray-600]="isTabCompletada(2) && !isTabAtiva(2)" [class.text-gray-400]="isTabFutura(2)"
-                    [class.cursor-not-allowed]="isTabFutura(2)"
+                <button [class.text-green-600]="isTabActive(2)" [class.border-green-500]="isTabActive(2)"
+                    [class.text-gray-600]="isTabCompleted(2) && !isTabActive(2)" [class.text-gray-400]="isTabFuture(2)"
+                    [class.cursor-not-allowed]="isTabFuture(2)"
                     class="flex-1 py-3 font-medium border-b-2 border-transparent transition-colors">
                     <span class="block text-xs mb-1">Passo 3</span>
                     Horários
                 </button>
-                <button [class.text-green-600]="isTabAtiva(3)" [class.border-green-500]="isTabAtiva(3)"
-                    [class.text-gray-600]="isTabCompletada(3) && !isTabAtiva(3)" [class.text-gray-400]="isTabFutura(3)"
-                    [class.cursor-not-allowed]="isTabFutura(3)"
+                <button [class.text-green-600]="isTabActive(3)" [class.border-green-500]="isTabActive(3)"
+                    [class.text-gray-600]="isTabCompleted(3) && !isTabActive(3)" [class.text-gray-400]="isTabFuture(3)"
+                    [class.cursor-not-allowed]="isTabFuture(3)"
                     class="flex-1 py-3 font-medium border-b-2 border-transparent transition-colors">
                     <span class="block text-xs mb-1">Passo 4</span>
                     Confirmação
@@ -59,9 +59,9 @@
             <div *ngIf="currentStep === 0">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Selecione a Unidade de Saúde</h2>
                 <div class="space-y-3">
-                    <div *ngFor="let unidade of unidades" (click)="selecionarUnidade(unidade)"
-                        [class.border-green-500]="isUnidadeSelecionada(unidade)"
-                        [class.bg-green-50]="isUnidadeSelecionada(unidade)"
+                    <div *ngFor="let unity of unities" (click)="selectUnity(unity)"
+                        [class.border-green-500]="isUnitySelected(unity)"
+                        [class.bg-green-50]="isUnitySelected(unity)"
                         class="p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 cursor-pointer transition-all">
                         <div class="flex items-start">
                             <div
@@ -73,22 +73,22 @@
                                 </svg>
                             </div>
                             <div class="ml-4 flex-1">
-                                <h3 class="font-semibold text-gray-800">{{ unidade.nome }}</h3>
-                                <p class="text-sm text-gray-600 mt-1">{{ unidade.endereco }}</p>
-                                <p class="text-xs text-gray-500 mt-1">{{ unidade.horario }}</p>
+                                <h3 class="font-semibold text-gray-800">{{ unity.nome }}</h3>
+                                <p class="text-sm text-gray-600 mt-1">{{ unity.endereco }}</p>
+                                <p class="text-xs text-gray-500 mt-1">{{ unity.horario }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Step 2: Vacina -->
+            <!-- Step 2: Especialidade -->
             <div *ngIf="currentStep === 1">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Selecione a Vacina</h2>
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Selecione a especialidade</h2>
                 <div class="space-y-3">
-                    <div *ngFor="let vacina of vacinas" (click)="selecionarVacina(vacina)"
-                        [class.border-green-500]="isVacinaSelecionada(vacina)"
-                        [class.bg-green-50]="isVacinaSelecionada(vacina)"
+                    <div *ngFor="let specialty of specialties" (click)="selectSpecialty(specialty)"
+                        [class.border-green-500]="isSpecialtySelected(specialty)"
+                        [class.bg-green-50]="isSpecialtySelected(specialty)"
                         class="p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 cursor-pointer transition-all">
                         <div class="flex items-start">
                             <div
@@ -100,8 +100,8 @@
                                 </svg>
                             </div>
                             <div class="ml-4 flex-1">
-                                <h3 class="font-semibold text-gray-800">{{ vacina.nome }}</h3>
-                                <p class="text-sm text-gray-600 mt-1">{{ vacina.descricao }}</p>
+                                <h3 class="font-semibold text-gray-800">{{ specialty.nome }}</h3>
+                                <p class="text-sm text-gray-600 mt-1">{{ specialty.descricao }}</p>
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                 <!-- Angular Material Calendar -->
                 <div class="calendar-container flex justify-center p-4">
                     <mat-calendar 
-                    [(selected)]="dataSelecionada" [minDate]="minDate" [maxDate]="maxDate"
+                    [(selected)]="selectedDate" [minDate]="minDate" [maxDate]="maxDate"
                         [dateFilter]="dateFilter" (selectedChange)="onDateChange($event)"
                         class="border border-gray-200 rounded-lg">
                     </mat-calendar>
@@ -124,17 +124,17 @@
                 <!-- Available hours -->
                 <div>
                     <p class="text-gray-700 font-medium mb-3">
-                        Horários disponíveis para {{ formatarData(dataSelecionada!) }}
+                        Horários disponíveis para {{ formatDate(selectedDate!) }}
                     </p>
                     <div class="grid grid-cols-4 gap-3">
-                        <button *ngFor="let horario of horarios" (click)="selecionarHorario(horario)"
-                            [class.bg-green-500]="isHorarioSelecionado(horario)"
-                            [class.text-white]="isHorarioSelecionado(horario)"
-                            [class.shadow-md]="isHorarioSelecionado(horario)"
-                            [class.bg-gray-100]="!isHorarioSelecionado(horario)"
-                            [class.text-gray-700]="!isHorarioSelecionado(horario)"
+                        <button *ngFor="let time of schedules" (click)="selectTime(time)"
+                            [class.bg-green-500]="isTimeSelected(time)"
+                            [class.text-white]="isTimeSelected(time)"
+                            [class.shadow-md]="isTimeSelected(time)"
+                            [class.bg-gray-100]="!isTimeSelected(time)"
+                            [class.text-gray-700]="!isTimeSelected(time)"
                             class="py-3 hover:bg-green-100 rounded-lg font-medium transition-all">
-                            {{ horario }}
+                            {{ time }}
                         </button>
                     </div>
                 </div>
@@ -162,8 +162,8 @@
                         </svg>
                         <div class="ml-4">
                             <p class="text-sm text-gray-600">Unidade de Saúde</p>
-                            <p class="font-semibold text-gray-800">{{ unidadeSelecionada?.nome }}</p>
-                            <p class="text-sm text-gray-600">{{ unidadeSelecionada?.endereco }}</p>
+                            <p class="font-semibold text-gray-800">{{ selectedUnity?.nome }}</p>
+                            <p class="text-sm text-gray-600">{{ selectedUnity?.endereco }}</p>
                         </div>
                     </div>
 
@@ -174,8 +174,8 @@
                                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                         <div class="ml-4">
-                            <p class="text-sm text-gray-600">Vacina</p>
-                            <p class="font-semibold text-gray-800">{{ vacinaSelecionada?.nome }}</p>
+                            <p class="text-sm text-gray-600">Especialidade</p>
+                            <p class="font-semibold text-gray-800">{{ selectedSpecialty?.nome }}</p>
                         </div>
                     </div>
 
@@ -187,8 +187,8 @@
                         </svg>
                         <div class="ml-4">
                             <p class="text-sm text-gray-600">Data e Horário</p>
-                            <p class="font-semibold text-gray-800">{{ formatarData(dataSelecionada!) }} às {{
-                                horarioSelecionado }}</p>
+                            <p class="font-semibold text-gray-800">{{ formatDate(selectedDate!) }} às {{
+                                selectedTime }}</p>
                         </div>
                     </div>
                 </div>
@@ -211,14 +211,14 @@
 
             <!-- Navigation buttons -->
             <div class="flex justify-between mt-8 pt-6 border-t border-gray-200">
-                <button *ngIf="currentStep > 0" (click)="voltar()"
+                <button *ngIf="currentStep > 0" (click)="back()"
                     class="px-6 py-2.5 text-gray-700 font-medium hover:bg-gray-100 rounded-lg transition-colors">
                     Voltar
                 </button>
-                <button (click)="avancar()" [disabled]="!podeAvancar()" [class.opacity-50]="!podeAvancar()"
-                    [class.cursor-not-allowed]="!podeAvancar()"
+                <button (click)="next()" [disabled]="!canNext()" [class.opacity-50]="!canNext()"
+                    [class.cursor-not-allowed]="!canNext()"
                     class="ml-auto px-8 py-2.5 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:hover:from-green-500 disabled:hover:to-green-700">
-                    {{ getTextoBotaoAvancar() }}
+                    {{ getNextButtonText() }}
                 </button>
             </div>
         </div>
