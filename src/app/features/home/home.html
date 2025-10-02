@@ -1,226 +1,59 @@
 <div class="min-h-screen flex bg-gray-50">
-    <!-- Sidebar -->
-    <div class="w-64 bg-white border-r border-gray-200 flex flex-col items-center p-6 space-y-3">
-        <div class="flex flex-col items-center mb-6 md:mb-8">
-            <div
-                class="w-16 h-16 md:w-18 md:h-18 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center shadow-lg">
-                <svg class="w-10 h-10 md:w-12 md:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-            </div>
-            <h1 class="text-green-600 font-bold text-xl md:text-2xl mt-2 text-center">Tua Consulta</h1>
-        </div>
+  <!-- Overlay para mobile (fecha sidebar ao clicar fora) -->
+  <div 
+    *ngIf="sidebarOpen"
+    class="fixed inset-0 bg-gray-500 opacity-50 z-30 md:hidden"
+    (click)="sidebarOpen = false"
+  ></div>
 
-        <button
-            class="w-full py-2 bg-green-500 text-white rounded-lg font-medium shadow hover:bg-green-600 transition-colors">Agendar</button>
-        <button class="w-full py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Vacinas</button>
-        <button class="w-full py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Perfil</button>
+  <!-- Sidebar -->
+  <aside 
+    class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out md:translate-x-0 md:static"
+    [class.-translate-x-full]="!sidebarOpen"
+    [class.translate-x-0]="sidebarOpen"
+  >
+    <!-- Botão de fechar (apenas mobile) -->
+    <button 
+      class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 md:hidden"
+      (click)="sidebarOpen = false"
+      aria-label="Fechar menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    
+    <app-side-bar (closeSidebar)="sidebarOpen = false"></app-side-bar>
+  </aside>
+
+  <!-- Conteúdo Principal -->
+  <main class="flex-1 flex flex-col w-full overflow-hidden">
+    <!-- Header com botão do menu -->
+    <header class="sticky top-0 z-20 bg-white border-b border-gray-200 md:hidden">
+      <div class="flex items-center justify-between px-4 py-3">
+        <button 
+          class="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          (click)="sidebarOpen = true"
+          aria-label="Abrir menu"
+        >
+          <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+        
+        <!-- Você pode adicionar logo ou título aqui -->
+        <h1 class="text-lg font-semibold text-gray-800">Tua Consulta</h1>
+        
+        <!-- Espaço para ações adicionais (notificações, perfil, etc) -->
+        <div class="w-10"></div>
+      </div>
+    </header>
+
+    <!-- Conteúdo scrollável -->
+    <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+      <div class="max-w-7xl mx-auto">
+        <router-outlet></router-outlet>
+      </div>
     </div>
-
-    <!-- Main content -->
-    <div class="flex-1 p-8 md:p-12 flex justify-center items-start">
-        <div class="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-6 md:p-10 border border-gray-200">
-            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Agendar consulta</h1>
-
-            <!-- Progress Tabs -->
-            <div class="flex space-x-2 mb-8 border-b border-gray-200">
-                <button [class.text-green-600]="isTabActive(0)" [class.border-green-500]="isTabActive(0)"
-                    [class.text-gray-600]="isTabCompleted(0) && !isTabActive(0)" [class.text-gray-400]="isTabFuture(0)"
-                    [class.cursor-not-allowed]="isTabFuture(0)"
-                    class="flex-1 py-3 font-medium border-b-2 border-transparent transition-colors">
-                    <span class="block text-xs mb-1">Passo 1</span>
-                    Unidade
-                </button>
-                <button [class.text-green-600]="isTabActive(1)" [class.border-green-500]="isTabActive(1)"
-                    [class.text-gray-600]="isTabCompleted(1) && !isTabActive(1)" [class.text-gray-400]="isTabFuture(1)"
-                    [class.cursor-not-allowed]="isTabFuture(1)"
-                    class="flex-1 py-3 font-medium border-b-2 border-transparent transition-colors">
-                    <span class="block text-xs mb-1">Passo 2</span>
-                    Especialidade
-                </button>
-                <button [class.text-green-600]="isTabActive(2)" [class.border-green-500]="isTabActive(2)"
-                    [class.text-gray-600]="isTabCompleted(2) && !isTabActive(2)" [class.text-gray-400]="isTabFuture(2)"
-                    [class.cursor-not-allowed]="isTabFuture(2)"
-                    class="flex-1 py-3 font-medium border-b-2 border-transparent transition-colors">
-                    <span class="block text-xs mb-1">Passo 3</span>
-                    Horários
-                </button>
-                <button [class.text-green-600]="isTabActive(3)" [class.border-green-500]="isTabActive(3)"
-                    [class.text-gray-600]="isTabCompleted(3) && !isTabActive(3)" [class.text-gray-400]="isTabFuture(3)"
-                    [class.cursor-not-allowed]="isTabFuture(3)"
-                    class="flex-1 py-3 font-medium border-b-2 border-transparent transition-colors">
-                    <span class="block text-xs mb-1">Passo 4</span>
-                    Confirmação
-                </button>
-            </div>
-
-            <!-- Step 1: Unidade -->
-            <div *ngIf="currentStep === 0">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Selecione a Unidade de Saúde</h2>
-                <div class="space-y-3">
-                    <div *ngFor="let unity of unities" (click)="selectUnity(unity)"
-                        [class.border-green-500]="isUnitySelected(unity)"
-                        [class.bg-green-50]="isUnitySelected(unity)"
-                        class="p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 cursor-pointer transition-all">
-                        <div class="flex items-start">
-                            <div
-                                class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                </svg>
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h3 class="font-semibold text-gray-800">{{ unity.nome }}</h3>
-                                <p class="text-sm text-gray-600 mt-1">{{ unity.endereco }}</p>
-                                <p class="text-xs text-gray-500 mt-1">{{ unity.horario }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 2: Especialidade -->
-            <div *ngIf="currentStep === 1">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Selecione a especialidade</h2>
-                <div class="space-y-3">
-                    <div *ngFor="let specialty of specialties" (click)="selectSpecialty(specialty)"
-                        [class.border-green-500]="isSpecialtySelected(specialty)"
-                        [class.bg-green-50]="isSpecialtySelected(specialty)"
-                        class="p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 cursor-pointer transition-all">
-                        <div class="flex items-start">
-                            <div
-                                class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h3 class="font-semibold text-gray-800">{{ specialty.nome }}</h3>
-                                <p class="text-sm text-gray-600 mt-1">{{ specialty.descricao }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 3: Horários com Angular Material Calendar -->
-            <div *ngIf="currentStep === 2">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Escolha Data e Horário</h2>
-
-                <!-- Angular Material Calendar -->
-                <div class="calendar-container flex justify-center p-4">
-                    <mat-calendar 
-                    [(selected)]="selectedDate" [minDate]="minDate" [maxDate]="maxDate"
-                        [dateFilter]="dateFilter" (selectedChange)="onDateChange($event)"
-                        class="border border-gray-200 rounded-lg">
-                    </mat-calendar>
-                </div>
-
-                <!-- Available hours -->
-                <div>
-                    <p class="text-gray-700 font-medium mb-3">
-                        Horários disponíveis para {{ formatDate(selectedDate!) }}
-                    </p>
-                    <div class="grid grid-cols-4 gap-3">
-                        <button *ngFor="let time of schedules" (click)="selectTime(time)"
-                            [class.bg-green-500]="isTimeSelected(time)"
-                            [class.text-white]="isTimeSelected(time)"
-                            [class.shadow-md]="isTimeSelected(time)"
-                            [class.bg-gray-100]="!isTimeSelected(time)"
-                            [class.text-gray-700]="!isTimeSelected(time)"
-                            class="py-3 hover:bg-green-100 rounded-lg font-medium transition-all">
-                            {{ time }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 4: Confirmação -->
-            <div *ngIf="currentStep === 3">
-                <div class="text-center mb-6">
-                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Confirme seu Agendamento</h2>
-                    <p class="text-gray-600">Revise as informações antes de confirmar</p>
-                </div>
-
-                <div class="space-y-4 bg-gray-50 rounded-lg p-6 border border-gray-200">
-                    <div class="flex items-start pb-4 border-b border-gray-200">
-                        <svg class="w-6 h-6 text-green-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
-                        <div class="ml-4">
-                            <p class="text-sm text-gray-600">Unidade de Saúde</p>
-                            <p class="font-semibold text-gray-800">{{ selectedUnity?.nome }}</p>
-                            <p class="text-sm text-gray-600">{{ selectedUnity?.endereco }}</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start pb-4 border-b border-gray-200">
-                        <svg class="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                        <div class="ml-4">
-                            <p class="text-sm text-gray-600">Especialidade</p>
-                            <p class="font-semibold text-gray-800">{{ selectedSpecialty?.nome }}</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <svg class="w-6 h-6 text-purple-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        <div class="ml-4">
-                            <p class="text-sm text-gray-600">Data e Horário</p>
-                            <p class="font-semibold text-gray-800">{{ formatDate(selectedDate!) }} às {{
-                                selectedTime }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                    <div class="flex items-start">
-                        <svg class="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                        <div class="ml-3">
-                            <h4 class="text-sm font-semibold text-yellow-800">Importante</h4>
-                            <p class="text-sm text-yellow-700 mt-1">Chegue 15 minutos antes do horário agendado e traga
-                                um documento com foto.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation buttons -->
-            <div class="flex justify-between mt-8 pt-6 border-t border-gray-200">
-                <button *ngIf="currentStep > 0" (click)="back()"
-                    class="px-6 py-2.5 text-gray-700 font-medium hover:bg-gray-100 rounded-lg transition-colors">
-                    Voltar
-                </button>
-                <button (click)="next()" [disabled]="!canNext()" [class.opacity-50]="!canNext()"
-                    [class.cursor-not-allowed]="!canNext()"
-                    class="ml-auto px-8 py-2.5 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:hover:from-green-500 disabled:hover:to-green-700">
-                    {{ getNextButtonText() }}
-                </button>
-            </div>
-        </div>
-    </div>
+  </main>
 </div>

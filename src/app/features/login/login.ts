@@ -11,6 +11,6 @@ export class Login {
   constructor(private router: Router) {}
 
   login() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/agendar']);
   }
 }

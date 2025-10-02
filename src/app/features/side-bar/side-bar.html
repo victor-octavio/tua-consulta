@@ -1,0 +1,45 @@
+<div class="w-64 h-full bg-white border-r border-gray-200 flex flex-col items-center p-6 space-y-3">
+    <div class="flex flex-col items-center mb-6 md:mb-8">
+        <div
+            class="w-16 h-16 md:w-18 md:h-18 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center shadow-lg">
+            <svg class="w-10 h-10 md:w-12 md:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+        <h1 class="text-green-600 font-bold text-xl md:text-2xl mt-2 text-center">Tua Consulta</h1>
+    </div>
+
+    <!-- Botão Agendar -->
+    <button routerLink="/agendar" (click)="onMenuItemClick()" routerLinkActive="bg-green-500 text-white shadow-md"
+        [routerLinkActiveOptions]="{exact: false}"
+        class="w-full py-2.5 text-gray-700 rounded-lg transition-all font-medium flex items-center justify-center gap-2 hover:bg-gray-100 [&.bg-green-500]:hover:bg-green-600">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Agendar
+    </button>
+
+    <!-- Botão Vacinas -->
+    <button routerLink="/vacinas" (click)="onMenuItemClick()" routerLinkActive="bg-green-500 text-white shadow-md"
+        [routerLinkActiveOptions]="{exact: false}"
+        class="w-full py-2.5 text-gray-700 rounded-lg transition-all font-medium flex items-center justify-center gap-2 hover:bg-gray-100 [&.bg-green-500]:hover:bg-green-600">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Vacinas
+    </button>
+
+    <!-- Botão Perfil -->
+    <button routerLink="/perfil" (click)="onMenuItemClick()" routerLinkActive="bg-green-500 text-white shadow-md"
+        [routerLinkActiveOptions]="{exact: false}"
+        class="w-full py-2.5 text-gray-700 rounded-lg transition-all font-medium flex items-center justify-center gap-2 hover:bg-gray-100 [&.bg-green-500]:hover:bg-green-600">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        Perfil
+    </button>
+</div>
