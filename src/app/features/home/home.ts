@@ -1,21 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SideBar } from '../side-bar/side-bar';
-import { Schedule } from '../schedule/schedule';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
-interface Unity {
-  id: number;
-  nome: string;
-  endereco: string;
-  horario: string;
-}
-
-interface Specialty {
-  id: number;
-  nome: string;
-  descricao: string;
-}
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +14,23 @@ interface Specialty {
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {
+export class Home implements OnInit {
   sidebarOpen = false;
+  isFuncionario = false;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.checkUserType();
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.checkUserType();
+    });
+  }
+
+  checkUserType() {
+    this.isFuncionario = this.router.url.includes('/funcionario');
+  }
 }

@@ -1,67 +1,115 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-    <div
-        class="flex flex-col md:flex-row w-full max-w-6xl h-auto md:h-[600px] bg-white rounded-3xl shadow-2xl overflow-hidden">
-        <div
-            class="hidden md:flex flex-1 bg-gradient-to-br from-green-500 via-green-600 to-green-700 items-center justify-center p-6 md:p-10">
-            <div class="text-center">
-                <div class="w-full max-w-xs md:max-w-md mb-6 md:mb-8">
-                    <svg class="w-full h-auto" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="200" cy="150" r="100" fill="white" opacity="0.1" />
-                        <circle cx="200" cy="150" r="70" fill="white" opacity="0.2" />
-                        <path d="M180 150 L220 150 M200 130 L200 170" stroke="white" stroke-width="8"
-                            stroke-linecap="round" />
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 via-white to-gray-100 p-4">
+    <div class="flex flex-col lg:flex-row w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden">
+
+        <!-- Painel lateral decorativo -->
+        <div class="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-gray-800 to-gray-900 items-center justify-center p-6">
+            <div class="text-center max-w-sm space-y-4">
+                <div class="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                 </div>
-                <h3 class="text-white text-xl md:text-2xl font-bold">Tua Consulta</h3>
-                <p class="text-white/80 mt-2 text-sm md:text-base">Agende suas consultas de forma rápida e simplificada
-                </p>
+                <div class="space-y-3">
+                    <h3 class="text-white text-2xl font-bold">UBS IAPI</h3>
+                    <p class="text-gray-300 text-base leading-relaxed">Sistema de Agendamento de Consultas</p>
+                    <div class="pt-4 border-t border-teal-500 border-opacity-30">
+                        <p class="text-gray-300 text-sm">Unidade Básica de Saúde</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div
-            class="sm:flex items-center justify-center p-4 md:p-12 w-full max-w-xs md:max-w-md mx-auto transform scale-95 md:scale-100 transition-all duration-1000 delay-300 ease-in-out min-h-[55vh] md:min-h-[60vh]">
-            <!-- Depois a gente ve se faz o logo separado ou so joga isso p outro component e azar -->
-            <div class="w-full max-w-xs md:max-w-md">
-                <div class="flex justify-center items-center mb-6 md:mb-8">
-                    <div
-                        class="w-14 h-14 md:w-18 md:h-18 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center shadow-lg mr-4">
-                        <svg class="w-8 h-8 md:w-12 md:h-12 text-white" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
+        <!-- Formulário de Login -->
+        <div class="flex-1 flex items-center justify-center p-6 lg:p-8">
+            <div class="w-full max-w-sm">
+
+                <!-- Logo mobile/tablet -->
+                <div class="lg:hidden text-center mb-8">
+                    <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                     </div>
-                    <h1 class="text-green-600 font-bold text-2xl md:text-4xl">Tua Consulta</h1>
+                    <h1 class="text-gray-800 font-bold text-2xl">UBS IAPI</h1>
                 </div>
 
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-6 md:mb-8">Login</h2>
+                <div class="mb-8">
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-2">Bem-vindo</h2>
+                    <p class="text-gray-600">Faça login para acessar o sistema</p>
+                </div>
 
-                <form class="space-y-4 md:space-y-6">
+                <!-- Seletor de tipo de usuário -->
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <button
+                        type="button"
+                        (click)="tipoUsuario = 'paciente'"
+                        [class]="tipoUsuario === 'paciente' ? 'bg-teal-500 text-white shadow-md border-teal-500' : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-teal-500'"
+                        class="py-3 px-4 rounded-lg font-semibold transition-all duration-200 border-2">
+                        Paciente
+                    </button>
+                    <button
+                        type="button"
+                        (click)="tipoUsuario = 'funcionario'"
+                        [class]="tipoUsuario === 'funcionario' ? 'bg-teal-500 text-white shadow-md border-teal-500' : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-teal-500'"
+                        class="py-3 px-4 rounded-lg font-semibold transition-all duration-200 border-2">
+                        Funcionário
+                    </button>
+                </div>
+
+                <!-- Formulário -->
+                <form class="space-y-4" (submit)="login($event)">
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Email</label>
-                        <input id="email" type="email" placeholder="seu@email.com"
-                            class="w-full px-3 py-2 md:px-4 md:py-3 border-2 border-gray-300 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 hover:border-gray-400 text-sm md:text-base">
+                        <label for="cpf" class="block text-sm font-semibold text-gray-800 mb-2">
+                            CPF
+                        </label>
+                        <input
+                            id="cpf"
+                            type="text"
+                            [(ngModel)]="cpf"
+                            name="cpf"
+                            placeholder="000.000.000-00"
+                            maxlength="14"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all">
                     </div>
 
                     <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1 md:mb-2">Senha</label>
-                        <input id="password" type="password" placeholder="Sua senha"
-                            class="w-full px-3 py-2 md:px-4 md:py-3 border-2 border-gray-300 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 hover:border-gray-400 text-sm md:text-base">
+                        <label for="cartaoSus" class="block text-sm font-semibold text-gray-800 mb-2">
+                            Cartão SUS (CNS)
+                        </label>
+                        <input
+                            id="cartaoSus"
+                            type="text"
+                            [(ngModel)]="cartaoSus"
+                            name="cartaoSus"
+                            placeholder="000 0000 0000 0000"
+                            maxlength="18"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all">
                     </div>
 
-                    <div class="text-right">
-                        <a href="#"
-                            class="text-xs md:text-sm text-green-600 hover:border-b-1 hover:text-green-700 font-medium transition-colors">Esqueceu
-                            sua senha?</a>
-                    </div>
-
-                    <button type="submit"
-                        class="w-full py-2.5 md:py-3 px-4 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-sm md:text-base"
-                        (click)="login()">
-                        Entrar
+                    <button
+                        type="submit"
+                        class="w-full py-3 px-4 bg-teal-500 hover:bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 mt-6">
+                        Entrar no Sistema
                     </button>
                 </form>
+
+                <!-- Informações adicionais -->
+                <div class="mt-6 p-4 bg-blue-50 border-l-4 border-teal-500 rounded-lg">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <p class="text-sm text-gray-800 leading-relaxed">
+                            <strong class="block mb-1">Atenção:</strong>
+                            Para acessar o sistema, utilize seu CPF e número do Cartão Nacional de Saúde (CNS).
+                            Caso não possua o cartão SUS, dirija-se à recepção da UBS IAPI.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+

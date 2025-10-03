@@ -1,0 +1,155 @@
+<div class="min-h-screen bg-gray-50 p-4 md:p-6 lg:p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <div>
+                <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Gerenciar Especialidades</h1>
+                <p class="text-gray-600">Gerencie as especialidades e serviços oferecidos pela UBS IAPI</p>
+            </div>
+            <button
+                (click)="abrirModalNovo()"
+                class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>Nova Especialidade</span>
+            </button>
+        </div>
+
+        <!-- Grid de Especialidades -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div *ngFor="let esp of especialidades" class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
+                <!-- Header do Card -->
+                <div class="flex items-start gap-3 mb-4">
+                    <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-bold text-gray-900 mb-1 break-words">{{ esp.nome }}</h3>
+                        <p class="text-sm text-gray-600 line-clamp-2">{{ esp.descricao }}</p>
+                    </div>
+                </div>
+
+                <!-- Total de Agendamentos -->
+                <div class="flex items-center justify-between mb-4 p-3 bg-teal-50 rounded-lg">
+                    <span class="text-sm font-semibold text-gray-700">Total de Agendamentos</span>
+                    <span class="text-lg font-bold text-teal-600">{{ esp.totalAgendamentos }}</span>
+                </div>
+
+                <!-- Status Toggle -->
+                <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-200">
+                    <span class="text-sm font-semibold text-gray-700">Status</span>
+                    <button
+                        (click)="toggleStatus(esp)"
+                        [class.bg-green-500]="esp.ativa"
+                        [class.bg-gray-300]="!esp.ativa"
+                        class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+                        <span
+                            [class.translate-x-5]="esp.ativa"
+                            [class.translate-x-1]="!esp.ativa"
+                            class="inline-block h-3 w-3 transform rounded-full bg-white transition-transform">
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="flex gap-2">
+                    <button
+                        (click)="abrirModalEditar(esp)"
+                        class="flex-1 px-3 py-2 bg-teal-600 text-white text-sm font-semibold rounded-lg hover:bg-teal-700 transition-colors">
+                        Editar
+                    </button>
+                    <button
+                        (click)="excluirEspecialidade(esp.id)"
+                        class="flex-1 px-3 py-2 bg-red-600 text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition-colors">
+                        Excluir
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Criação/Edição -->
+        <div *ngIf="mostrarModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
+                <!-- Modal Header -->
+                <div class="bg-gray-900 text-white px-6 py-4 rounded-t-2xl sticky top-0">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-bold">
+                            {{ modoEdicao ? 'Editar Especialidade' : 'Nova Especialidade' }}
+                        </h2>
+                        <button
+                            (click)="fecharModal()"
+                            class="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="p-6">
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-900 mb-2">Nome da Especialidade</label>
+                            <input
+                                type="text"
+                                [(ngModel)]="especialidadeSelecionada.nome"
+                                name="nome"
+                                placeholder="Ex: Clínica Geral"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-900 mb-2">Descrição</label>
+                            <textarea
+                                [(ngModel)]="especialidadeSelecionada.descricao"
+                                name="descricao"
+                                rows="3"
+                                placeholder="Descreva os serviços oferecidos nesta especialidade"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-colors resize-none"></textarea>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                            <label class="text-sm font-semibold text-gray-900">Especialidade Ativa</label>
+                            <button
+                                type="button"
+                                (click)="especialidadeSelecionada.ativa = !especialidadeSelecionada.ativa"
+                                [class.bg-green-500]="especialidadeSelecionada.ativa"
+                                [class.bg-gray-300]="!especialidadeSelecionada.ativa"
+                                class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+                                <span
+                                    [class.translate-x-5]="especialidadeSelecionada.ativa"
+                                    [class.translate-x-1]="!especialidadeSelecionada.ativa"
+                                    class="inline-block h-3 w-3 transform rounded-full bg-white transition-transform">
+                                </span>
+                            </button>
+                            <span class="text-sm font-medium" [class.text-green-600]="especialidadeSelecionada.ativa" [class.text-gray-600]="!especialidadeSelecionada.ativa">
+                                {{ especialidadeSelecionada.ativa ? 'Ativa' : 'Inativa' }}
+                            </span>
+                        </div>
+
+                        <div class="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                            <button
+                                type="button"
+                                (click)="fecharModal()"
+                                class="px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+                                Cancelar
+                            </button>
+                            <button
+                                type="button"
+                                (click)="salvarEspecialidade()"
+                                class="px-4 py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors">
+                                {{ modoEdicao ? 'Salvar Alterações' : 'Cadastrar Especialidade' }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

@@ -1,3 +1,11 @@
 @import "tailwindcss";
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
-/* ou outro tema que você preferir */
+
+/* Tema Tua Consulta - CSS Variables only */
+.tuaconsulta-theme {
+  --color-dark: #222831;
+  --color-medium: #31363F;
+  --color-accent: #76ABAE;
+  --color-light: #EEEEEE;
+}
+

@@ -3,16 +3,10 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { SideBar } from '../side-bar/side-bar';
+import { Router } from '@angular/router';
+import { MOCK_AGENDAMENTOS } from '../side-bar/side-bar';
 
-interface Unity {
-  id: number;
-  nome: string;
-  endereco: string;
-  horario: string;
-}
-
-interface Specialty {
+interface Especialidade {
   id: number;
   nome: string;
   descricao: string;
@@ -30,114 +24,103 @@ interface Specialty {
   styleUrl: './schedule.css'
 })
 export class Schedule {
-  isCompletedTab(arg0: number) {
-    throw new Error('Method not implemented.');
-  }
   currentStep = 0;
   steps = [
-  { name: 'Unidade', shortName: 'Unid.' },
-  { name: 'Especialidade', shortName: 'Espec.' },
-  { name: 'Horários', shortName: 'Hora' },
-  { name: 'Confirmação', shortName: 'Conf.' }
-];
+    { name: 'Especialidade', shortName: 'Espec.' },
+    { name: 'Data e Horário', shortName: 'Data' },
+    { name: 'Confirmação', shortName: 'Conf.' }
+  ];
 
   // Dados selecionados
-  selectedUnity: Unity | null = null;
-  selectedSpecialty: Specialty | null = null;
-  selectedDate: Date | null = new Date(2025, 0, 15); // 15 de Janeiro de 2025
+  selectedEspecialidade: Especialidade | null = null;
+  selectedDate: Date | null = null;
   selectedTime: string | null = null;
 
   // Data mínima e máxima para o calendário
-  minDate: Date = new Date(2025, 0, 1);
-  maxDate: Date = new Date(2025, 11, 31);
+  minDate: Date = new Date();
+  maxDate: Date = new Date(new Date().setMonth(new Date().getMonth() + 3));
 
-  // Lista de unidades
-  unities: Unity[] = [
+  // Lista de especialidades disponíveis na UBS IAPI
+  especialidades: Especialidade[] = [
     {
       id: 1,
-      nome: 'Clínica da Família IAPI',
-      endereco: `Rua Três de Abril, 90 - Passo d'Areia`,
-      horario: 'Segunda a Sexta: 7h às 22h'
+      nome: 'Clínica Geral',
+      descricao: 'Consultas médicas gerais e acompanhamento de saúde'
     },
     {
       id: 2,
-      nome: 'UBS Jardim das Acácias',
-      endereco: 'Av. Principal, 456 - Jardim das Acácias',
-      horario: 'Segunda a Sexta: 7h às 19h'
+      nome: 'Pediatria',
+      descricao: 'Atendimento médico para crianças e adolescentes'
     },
     {
       id: 3,
-      nome: 'UBS Vila Nova',
-      endereco: 'Rua dos Pinheiros, 789 - Vila Nova',
-      horario: 'Segunda a Sexta: 8h às 16h'
-    }
-  ];
-
-  // Lista de especialidades
-  specialties: Specialty[] = [
-    {
-      id: 1,
-      nome: 'Dentista',
-      descricao: 'Recomendada para todos os adultos'
-    },
-    {
-      id: 2,
-      nome: 'Pediatra',
-      descricao: 'Campanha anual de vacinação'
-    },
-    {
-      id: 3,
-      nome: 'Clinico Geral',
-      descricao: 'Reforço a cada 10 anos'
+      nome: 'Ginecologia/Obstetrícia',
+      descricao: 'Saúde da mulher, pré-natal e planejamento familiar'
     },
     {
       id: 4,
-      nome: 'Enfermagem',
-      descricao: 'Esquema de 3 doses'
+      nome: 'Vacinação',
+      descricao: 'Aplicação de vacinas do calendário nacional'
+    },
+    {
+      id: 5,
+      nome: 'Curativos',
+      descricao: 'Realização e troca de curativos'
+    },
+    {
+      id: 6,
+      nome: 'Coleta de Exames',
+      descricao: 'Coleta de sangue e outros exames laboratoriais'
     }
   ];
 
-  // Horários disponíveis
-  schedules: string[] = ['08:00', '09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
+  // Horários por turno
+  horariosManha: string[] = ['07:00', '07:30', '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30'];
+  horariosTarde: string[] = ['13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'];
+  horariosNoite: string[] = ['18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30'];
+
+  turnoSelecionado: 'manha' | 'tarde' | 'noite' = 'manha';
+
+  constructor(private router: Router) {}
+
+  get horariosDisponiveis(): string[] {
+    switch (this.turnoSelecionado) {
+      case 'manha': return this.horariosManha;
+      case 'tarde': return this.horariosTarde;
+      case 'noite': return this.horariosNoite;
+      default: return [];
+    }
+  }
 
   // Filtro de datas - desabilita fins de semana
   dateFilter = (date: Date | null): boolean => {
     if (!date) return false;
     const day = date.getDay();
-    // Desabilita domingos (0) e sábados (6)
     return day !== 0 && day !== 6;
   };
 
   // Métodos de seleção
-  selectUnity(unity: Unity): void {
-    console.log('Unity selected:', unity);
-    this.selectedUnity = unity;
+  selectEspecialidade(especialidade: Especialidade): void {
+    this.selectedEspecialidade = especialidade;
   }
 
-  selectSpecialty(specialty: Specialty): void {
-    console.log('Specialty selected:', specialty);
-    this.selectedSpecialty = specialty;
+  selecionarTurno(turno: 'manha' | 'tarde' | 'noite'): void {
+    this.turnoSelecionado = turno;
+    this.selectedTime = null;
   }
 
   onDateChange(date: Date | null): void {
-    console.log('Date selected:', date);
     this.selectedDate = date;
-    // Reseta o horário quando muda a data
     this.selectedTime = null;
   }
 
   selectTime(time: string): void {
-    console.log('Time selected:', time);
     this.selectedTime = time;
   }
 
   // Verificações de seleção
-  isUnitySelected(unity: Unity): boolean {
-    return this.selectedUnity?.id === unity.id;
-  }
-
-  isSpecialtySelected(specialty: Specialty): boolean {
-    return this.selectedSpecialty?.id === specialty.id;
+  isEspecialidadeSelected(especialidade: Especialidade): boolean {
+    return this.selectedEspecialidade?.id === especialidade.id;
   }
 
   isTimeSelected(time: string): boolean {
@@ -146,9 +129,7 @@ export class Schedule {
 
   // Navegação
   next(): void {
-    console.log('Next - Current step:', this.currentStep);
-
-    if (this.currentStep < 3) {
+    if (this.currentStep < 2) {
       this.currentStep++;
     } else {
       this.confirmAppointment();
@@ -156,22 +137,22 @@ export class Schedule {
   }
 
   back(): void {
-    console.log('Back - Current step:', this.currentStep);
-
     if (this.currentStep > 0) {
       this.currentStep--;
     }
   }
 
+  voltar(): void {
+    this.router.navigate(['/paciente/meus-agendamentos']);
+  }
+
   canNext(): boolean {
     switch (this.currentStep) {
       case 0:
-        return this.selectedUnity !== null;
+        return this.selectedEspecialidade !== null;
       case 1:
-        return this.selectedSpecialty !== null;
-      case 2:
         return this.selectedDate !== null && this.selectedTime !== null;
-      case 3:
+      case 2:
         return true;
       default:
         return false;
@@ -179,7 +160,7 @@ export class Schedule {
   }
 
   getNextButtonText(): string {
-    return this.currentStep === 3 ? 'Confirmar agendamento' : 'Avançar';
+    return this.currentStep === 2 ? 'Confirmar Agendamento' : 'Próximo Passo';
   }
 
   isTabActive(index: number): boolean {
@@ -195,32 +176,45 @@ export class Schedule {
   }
 
   formatDate(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
+  formatDateFull(date: Date): string {
     const day = date.getDate();
     const month = date.toLocaleDateString('pt-BR', { month: 'long' });
     const year = date.getFullYear();
-    return `${day} de ${month} de ${year}`;
+    const weekDay = date.toLocaleDateString('pt-BR', { weekday: 'long' });
+    return `${weekDay}, ${day} de ${month} de ${year}`;
   }
 
   confirmAppointment(): void {
-    console.log('Agendamento confirmado:', {
-      unity: this.selectedUnity,
-      specialty: this.selectedSpecialty,
-      date: this.selectedDate,
-      time: this.selectedTime
-    });
+    const novoAgendamento = {
+      id: MOCK_AGENDAMENTOS.length + 1,
+      especialidade: this.selectedEspecialidade!.nome,
+      data: this.formatDate(this.selectedDate!),
+      hora: this.selectedTime!,
+      profissional: this.getProfissionalAleatorio(),
+      status: 'confirmado'
+    };
 
-    alert(`✅ Agendamento confirmado!
+    MOCK_AGENDAMENTOS.push(novoAgendamento);
 
-Unity: ${this.selectedUnity?.nome}
-Specialty: ${this.selectedSpecialty?.nome}
-Date: ${this.formatDate(this.selectedDate!)} at ${this.selectedTime}`);
+    alert('Agendamento confirmado com sucesso! Você será redirecionado para seus agendamentos.');
+    this.router.navigate(['/paciente/meus-agendamentos']);
   }
 
-  resetForm(): void {
-    this.currentStep = 0;
-    this.selectedUnity = null;
-    this.selectedSpecialty = null;
-    this.selectedDate = new Date(2025, 0, 15);
-    this.selectedTime = null;
+  getProfissionalAleatorio(): string {
+    const profissionais = [
+      'Dr. João Silva',
+      'Dra. Maria Santos',
+      'Dr. Pedro Oliveira',
+      'Dra. Ana Costa',
+      'Enf. Carlos Souza',
+      'Enf. Julia Lima'
+    ];
+    return profissionais[Math.floor(Math.random() * profissionais.length)];
   }
 }
