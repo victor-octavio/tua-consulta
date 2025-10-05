@@ -11,14 +11,15 @@ import { CommonModule } from '@angular/common';
 })
 export class Login {
   tipoUsuario: 'paciente' | 'funcionario' = 'paciente';
-  cpf: string = '';
-  cartaoSus: string = '';
+  identificacao: string = '';
+  senha: string = '';
 
   constructor(private router: Router) {}
 
   login(event: Event) {
     event.preventDefault();
 
+    // Mocked login - always allow access
     if (this.tipoUsuario === 'paciente') {
       this.router.navigate(['/paciente/agendar']);
     } else {

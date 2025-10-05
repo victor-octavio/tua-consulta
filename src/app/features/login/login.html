@@ -1,110 +1,126 @@
 <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 via-white to-gray-100 p-4">
-    <div class="flex flex-col lg:flex-row w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden">
+    <div class="flex flex-col lg:flex-row w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden">
 
         <!-- Painel lateral decorativo -->
         <div class="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-gray-800 to-gray-900 items-center justify-center p-6">
-            <div class="text-center max-w-sm space-y-4">
-                <div class="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="text-center max-w-sm space-y-3">
+                <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                 </div>
-                <div class="space-y-3">
-                    <h3 class="text-white text-2xl font-bold">UBS IAPI</h3>
-                    <p class="text-gray-300 text-base leading-relaxed">Sistema de Agendamento de Consultas</p>
-                    <div class="pt-4 border-t border-teal-500 border-opacity-30">
-                        <p class="text-gray-300 text-sm">Unidade Básica de Saúde</p>
+                <div class="space-y-2">
+                    <h3 class="text-white text-xl font-bold">TuaConsulta</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Sistema de Agendamento de Consultas</p>
+                    <div class="pt-2 border-t border-teal-500 border-opacity-30">
+                        <p class="text-gray-300 text-xs leading-relaxed">UNIDADE BASICA DE SAUDE IAPI
+</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Formulário de Login -->
-        <div class="flex-1 flex items-center justify-center p-6 lg:p-8">
+        <div class="flex-1 flex items-center justify-center p-6">
             <div class="w-full max-w-sm">
 
                 <!-- Logo mobile/tablet -->
-                <div class="lg:hidden text-center mb-8">
-                    <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="lg:hidden text-center mb-6">
+                    <div class="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                     </div>
-                    <h1 class="text-gray-800 font-bold text-2xl">UBS IAPI</h1>
+                    <h1 class="text-gray-800 font-bold text-xl">TuaConsulta</h1>
+                    <p class="text-gray-600 text-xs mt-1">UBS IAPI</p>
                 </div>
 
-                <div class="mb-8">
-                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-2">Bem-vindo</h2>
-                    <p class="text-gray-600">Faça login para acessar o sistema</p>
+                <div class="mb-6">
+                    <h2 class="text-xl lg:text-2xl font-bold text-gray-800 mb-1">Bem-vindo</h2>
+                    <p class="text-gray-600 text-sm">Faça login para acessar o sistema</p>
                 </div>
 
                 <!-- Seletor de tipo de usuário -->
-                <div class="grid grid-cols-2 gap-3 mb-6">
+                <div class="grid grid-cols-2 gap-2 mb-5">
                     <button
                         type="button"
                         (click)="tipoUsuario = 'paciente'"
                         [class]="tipoUsuario === 'paciente' ? 'bg-teal-500 text-white shadow-md border-teal-500' : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-teal-500'"
-                        class="py-3 px-4 rounded-lg font-semibold transition-all duration-200 border-2">
+                        class="py-2.5 px-3 rounded-lg font-semibold transition-all duration-200 border-2 text-sm">
                         Paciente
                     </button>
                     <button
                         type="button"
                         (click)="tipoUsuario = 'funcionario'"
                         [class]="tipoUsuario === 'funcionario' ? 'bg-teal-500 text-white shadow-md border-teal-500' : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-teal-500'"
-                        class="py-3 px-4 rounded-lg font-semibold transition-all duration-200 border-2">
+                        class="py-2.5 px-3 rounded-lg font-semibold transition-all duration-200 border-2 text-sm">
                         Funcionário
                     </button>
                 </div>
 
                 <!-- Formulário -->
                 <form class="space-y-4" (submit)="login($event)">
-                    <div>
-                        <label for="cpf" class="block text-sm font-semibold text-gray-800 mb-2">
-                            CPF
+                    <!-- Campos para Paciente -->
+                    <div *ngIf="tipoUsuario === 'paciente'">
+                        <label for="identificacao" class="block text-sm font-semibold text-gray-800 mb-1">
+                            CPF ou Cartão SUS
                         </label>
                         <input
-                            id="cpf"
+                            id="identificacao"
                             type="text"
-                            [(ngModel)]="cpf"
-                            name="cpf"
-                            placeholder="000.000.000-00"
-                            maxlength="14"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all">
+                            [(ngModel)]="identificacao"
+                            name="identificacao"
+                            placeholder="000.000.000-00 ou 000 0000 0000 0000"
+                            class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all text-sm">
+                    </div>
+
+                    <!-- Campos para Funcionário -->
+                    <div *ngIf="tipoUsuario === 'funcionario'">
+                        <label for="identificacao" class="block text-sm font-semibold text-gray-800 mb-1">
+                            ID Funcionário
+                        </label>
+                        <input
+                            id="identificacao"
+                            type="text"
+                            [(ngModel)]="identificacao"
+                            name="identificacao"
+                            placeholder="Digite seu ID de funcionário"
+                            class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all text-sm">
                     </div>
 
                     <div>
-                        <label for="cartaoSus" class="block text-sm font-semibold text-gray-800 mb-2">
-                            Cartão SUS (CNS)
+                        <label for="senha" class="block text-sm font-semibold text-gray-800 mb-1">
+                            Senha
                         </label>
                         <input
-                            id="cartaoSus"
-                            type="text"
-                            [(ngModel)]="cartaoSus"
-                            name="cartaoSus"
-                            placeholder="000 0000 0000 0000"
-                            maxlength="18"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all">
+                            id="senha"
+                            type="password"
+                            [(ngModel)]="senha"
+                            name="senha"
+                            placeholder="Digite sua senha"
+                            class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all text-sm">
                     </div>
 
                     <button
                         type="submit"
-                        class="w-full py-3 px-4 bg-teal-500 hover:bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 mt-6">
+                        class="w-full py-2.5 px-4 bg-teal-500 hover:bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 mt-5 text-sm">
                         Entrar no Sistema
                     </button>
                 </form>
 
                 <!-- Informações adicionais -->
-                <div class="mt-6 p-4 bg-blue-50 border-l-4 border-teal-500 rounded-lg">
-                    <div class="flex items-start space-x-3">
-                        <svg class="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="mt-5 p-3 bg-blue-50 border-l-4 border-teal-500 rounded-lg">
+                    <div class="flex items-start space-x-2">
+                        <svg class="w-4 h-4 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <p class="text-sm text-gray-800 leading-relaxed">
+                        <p class="text-xs text-gray-800 leading-relaxed">
                             <strong class="block mb-1">Atenção:</strong>
-                            Para acessar o sistema, utilize seu CPF e número do Cartão Nacional de Saúde (CNS).
-                            Caso não possua o cartão SUS, dirija-se à recepção da UBS IAPI.
+                            <span *ngIf="tipoUsuario === 'paciente'">Pacientes podem usar CPF ou Cartão SUS para acesso.</span>
+                            <span *ngIf="tipoUsuario === 'funcionario'">Funcionários devem usar ID e senha fornecidos pela administração.</span>
+                            Para dúvidas, dirija-se à recepção da UBS IAPI.
                         </p>
                     </div>
                 </div>
