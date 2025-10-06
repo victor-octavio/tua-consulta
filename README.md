@@ -16,7 +16,7 @@
 
 ## 📋 Sobre o Projeto
 
-O **Tua Consulta** é uma aplicação web desenvolvida para facilitar o agendamento de consultas médicas e vacinas. A plataforma oferece uma interface intuitiva e responsiva, otimizada tanto para desktop quanto para dispositivos móveis.
+O **Tua Consulta** é uma aplicação web desenvolvida para facilitar o agendamento de consultas em UBS. A plataforma oferece uma interface intuitiva e responsiva, otimizada tanto para desktop quanto para dispositivos móveis.
 
 ### 🎯 Objetivos
 
