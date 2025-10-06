@@ -1,59 +1,55 @@
-# TuaConsulta
+# Tua Consulta 🏥
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.3.
+<div align="center">
 
-## Development server
+[![Angular](https://img.shields.io/badge/Angular-18+-DD0031?style=for-the-badge&logo=angular)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4+-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-To start a local development server, run:
+**Sistema de Agendamento de Consultas e Vacinas para a UBS IAPI**
 
-```bash
-ng serve
-```
+🌐 Acessar a Aplicação → https://tua-consulta.vercel.app
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+</div>
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📋 Sobre o Projeto
 
-```bash
-ng generate component component-name
-```
+O **Tua Consulta** é uma aplicação web desenvolvida para facilitar o agendamento de consultas médicas e vacinas. A plataforma oferece uma interface intuitiva e responsiva, otimizada tanto para desktop quanto para dispositivos móveis.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 🎯 Objetivos
 
-```bash
-ng generate --help
-```
+- Simplificar o processo de agendamento de consultas e vacinas
+- Reduzir filas e tempo de espera nas Unidades Básicas de Saúde (UBS)
+- Oferecer acesso inclusivo através de recursos de acessibilidade (VLibras)
+- Proporcionar uma experiência moderna e intuitiva para todos os usuários
 
-## Building
+---
 
-To build the project run:
+## ✨ Funcionalidades
 
-```bash
-ng build
-```
+### 🔐 Login e Perfil
+- Sistema de login com CPF/CNS e senha
+- Gerenciamento de perfil do usuário
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 📅 Agendamento de Consultas
+- Escolha de especialidade médica
+- Calendário interativo para seleção de data
+- Visualização de horários disponíveis
+- Confirmação de agendamento
+- Histórico de consultas agendadas
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### ✅ Acessibilidade
+- Integração com VLibras para tradução em LIBRAS (Língua Brasileira de Sinais)
+- Design responsivo para diferentes tamanhos de tela
+- Interface otimizada para dispositivos móveis
+- Alto contraste e legibilidade
 
-```bash
-ng test
-```
+### 🎨 Interface do Usuário
+- Paleta de cores simples e objetiva
+- Animações e feedback visual
+- Navegação intuitiva
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+</div>
