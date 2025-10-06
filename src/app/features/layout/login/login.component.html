@@ -2,7 +2,11 @@
     <div class="flex flex-col lg:flex-row w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden">
 
         <!-- Painel lateral decorativo -->
-        <div class="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-gray-800 to-gray-900 items-center justify-center p-6">
+        <div class="fixed lg:static top-0 left-0 h-full lg:h-auto w-64 lg:w-2/5
+                    bg-gradient-to-br from-gray-800 to-gray-900 
+                    transform -translate-x-full lg:translate-x-0
+                    transition-transform duration-500 ease-in-out
+                    flex items-center justify-center p-6 z-20">
             <div class="text-center max-w-sm space-y-3">
                 <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -26,7 +30,8 @@
 
                 <!-- Logo mobile/tablet -->
                 <div class="lg:hidden text-center mb-6">
-                    <div class="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                    <div
+                        class="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -43,16 +48,12 @@
 
                 <!-- User type selector -->
                 <div class="grid grid-cols-2 gap-2 mb-5">
-                    <button
-                        type="button"
-                        (click)="userType = 'patient'"
+                    <button type="button" (click)="userType = 'patient'"
                         [class]="userType === 'patient' ? 'bg-teal-500 text-white shadow-md border-teal-500' : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-teal-500'"
                         class="py-2.5 px-3 rounded-lg font-semibold transition-all duration-200 border-2 text-sm">
                         Paciente
                     </button>
-                    <button
-                        type="button"
-                        (click)="userType = 'employee'"
+                    <button type="button" (click)="userType = 'employee'"
                         [class]="userType === 'employee' ? 'bg-teal-500 text-white shadow-md border-teal-500' : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-teal-500'"
                         class="py-2.5 px-3 rounded-lg font-semibold transition-all duration-200 border-2 text-sm">
                         Funcionário
@@ -66,11 +67,7 @@
                         <label for="identification" class="block text-sm font-semibold text-gray-800 mb-1">
                             CPF ou Cartão SUS
                         </label>
-                        <input
-                            id="identification"
-                            type="text"
-                            [(ngModel)]="identification"
-                            name="identification"
+                        <input id="identification" type="text" [(ngModel)]="identification" name="identification"
                             placeholder="000.000.000-00 ou 000 0000 0000 0000"
                             class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all text-sm">
                     </div>
@@ -80,11 +77,7 @@
                         <label for="identification" class="block text-sm font-semibold text-gray-800 mb-1">
                             Matrícula
                         </label>
-                        <input
-                            id="identification"
-                            type="text"
-                            [(ngModel)]="identification"
-                            name="identification"
+                        <input id="identification" type="text" [(ngModel)]="identification" name="identification"
                             placeholder="Digite sua matrícula"
                             class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all text-sm">
                     </div>
@@ -93,17 +86,18 @@
                         <label for="password" class="block text-sm font-semibold text-gray-800 mb-1">
                             Senha
                         </label>
-                        <input
-                            id="password"
-                            type="password"
-                            [(ngModel)]="password"
-                            name="password"
+                        <input id="password" type="password" [(ngModel)]="password" name="password"
                             placeholder="Digite sua senha"
                             class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all text-sm">
                     </div>
 
-                    <button
-                        type="submit"
+                    <div class="text-right">
+                        <a href="#" class="text-sm text-gray-600 hover:text-teal-500 inline-block">
+                            Esqueci minha senha
+                        </a>
+                    </div>
+
+                    <button type="submit"
                         class="w-full py-2.5 px-4 bg-teal-500 hover:bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 mt-5 text-sm">
                         Entrar no Sistema
                     </button>
@@ -112,13 +106,17 @@
                 <!-- Additional Information -->
                 <div class="mt-5 p-3 bg-blue-50 border-l-4 border-teal-500 rounded-lg">
                     <div class="flex items-start space-x-2">
-                        <svg class="w-4 h-4 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        <svg class="w-4 h-4 text-teal-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <p class="text-xs text-gray-800 leading-relaxed">
                             <strong class="block mb-1">Aviso:</strong>
-                            <span *ngIf="userType === 'patient'">Pacientes podem usar CPF ou Cartão Nacional de Saúde (CNS) para acesso.</span>
-                            <span *ngIf="userType === 'employee'">Funcionários devem usar matrícula e senha fornecidas pela administração.</span>
+                            <span *ngIf="userType === 'patient'">Pacientes podem usar CPF ou Cartão Nacional de Saúde
+                                (CNS) para acesso.</span>
+                            <span *ngIf="userType === 'employee'">Funcionários devem usar matrícula e senha fornecidas
+                                pela administração.</span>
                             Para dúvidas, dirija-se à recepção da UBS IAPI.
                         </p>
                     </div>
@@ -127,4 +125,3 @@
         </div>
     </div>
 </div>
-

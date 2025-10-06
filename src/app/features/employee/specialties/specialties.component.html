@@ -6,8 +6,7 @@
                 <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">Gerenciar Especialidades</h1>
                 <p class="text-gray-600">Gerencie especialidades e serviços oferecidos na UBS IAPI</p>
             </div>
-            <button
-                (click)="openNewModal()"
+            <button (click)="openNewModal()"
                 class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -18,7 +17,8 @@
 
         <!-- Specialties Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            <div *ngFor="let specialty of specialties" class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
+            <div *ngFor="let specialty of specialties"
+                class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
                 <!-- Card Header -->
                 <div class="flex items-start gap-3 mb-4">
                     <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -42,14 +42,10 @@
                 <!-- Status Toggle -->
                 <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-200">
                     <span class="text-sm font-semibold text-gray-700">Status</span>
-                    <button
-                        (click)="toggleStatus(specialty)"
-                        [class.bg-green-500]="specialty.active"
+                    <button (click)="toggleStatus(specialty)" [class.bg-green-500]="specialty.active"
                         [class.bg-gray-300]="!specialty.active"
                         class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
-                        <span
-                            [class.translate-x-5]="specialty.active"
-                            [class.translate-x-1]="!specialty.active"
+                        <span [class.translate-x-5]="specialty.active" [class.translate-x-1]="!specialty.active"
                             class="inline-block h-3 w-3 transform rounded-full bg-white transition-transform">
                         </span>
                     </button>
@@ -57,13 +53,11 @@
 
                 <!-- Action Buttons -->
                 <div class="flex gap-2">
-                    <button
-                        (click)="openEditModal(specialty)"
+                    <button (click)="openEditModal(specialty)"
                         class="flex-1 px-3 py-2 bg-teal-600 text-white text-sm font-semibold rounded-lg hover:bg-teal-700 transition-colors">
                         Editar
                     </button>
-                    <button
-                        (click)="deleteSpecialty(specialty.id)"
+                    <button (click)="deleteSpecialty(specialty.id)"
                         class="flex-1 px-3 py-2 bg-red-600 text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition-colors">
                         Excluir
                     </button>
@@ -72,7 +66,8 @@
         </div>
 
         <!-- Create/Edit Modal -->
-        <div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div *ngIf="showModal"
+            class="fixed inset-0 bg-gray-700/80 flex items-center justify-center z-50 p-4">
             <div class="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
                 <!-- Modal Header -->
                 <div class="bg-gray-900 text-white px-6 py-4 rounded-t-2xl sticky top-0">
@@ -80,11 +75,10 @@
                         <h2 class="text-xl font-bold">
                             {{ editMode ? 'Editar Especialidade' : 'Nova Especialidade' }}
                         </h2>
-                        <button
-                            (click)="closeModal()"
-                            class="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+                        <button (click)="closeModal()" class="p-2 hover:bg-gray-800 rounded-lg transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
                     </div>
@@ -95,53 +89,41 @@
                     <form class="space-y-4">
                         <div>
                             <label class="block text-sm font-semibold text-gray-900 mb-2">Nome da Especialidade</label>
-                            <input
-                                type="text"
-                                [(ngModel)]="selectedSpecialty.name"
-                                name="name"
+                            <input type="text" [(ngModel)]="selectedSpecialty.name" name="name"
                                 placeholder="Ex.: Clínico Geral"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-colors">
                         </div>
 
                         <div>
                             <label class="block text-sm font-semibold text-gray-900 mb-2">Descrição</label>
-                            <textarea
-                                [(ngModel)]="selectedSpecialty.description"
-                                name="description"
-                                rows="3"
+                            <textarea [(ngModel)]="selectedSpecialty.description" name="description" rows="3"
                                 placeholder="Descreva os serviços oferecidos nesta especialidade"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-colors resize-none"></textarea>
                         </div>
 
                         <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                             <label class="text-sm font-semibold text-gray-900">Especialidade Ativa</label>
-                            <button
-                                type="button"
-                                (click)="selectedSpecialty.active = !selectedSpecialty.active"
+                            <button type="button" (click)="selectedSpecialty.active = !selectedSpecialty.active"
                                 [class.bg-green-500]="selectedSpecialty.active"
                                 [class.bg-gray-300]="!selectedSpecialty.active"
                                 class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
-                                <span
-                                    [class.translate-x-5]="selectedSpecialty.active"
+                                <span [class.translate-x-5]="selectedSpecialty.active"
                                     [class.translate-x-1]="!selectedSpecialty.active"
                                     class="inline-block h-3 w-3 transform rounded-full bg-white transition-transform">
                                 </span>
                             </button>
-                            <span class="text-sm font-medium" [class.text-green-600]="selectedSpecialty.active" [class.text-gray-600]="!selectedSpecialty.active">
+                            <span class="text-sm font-medium" [class.text-green-600]="selectedSpecialty.active"
+                                [class.text-gray-600]="!selectedSpecialty.active">
                                 {{ selectedSpecialty.active ? 'Ativa' : 'Inativa' }}
                             </span>
                         </div>
 
                         <div class="flex justify-end gap-3 pt-4 border-t border-gray-200">
-                            <button
-                                type="button"
-                                (click)="closeModal()"
+                            <button type="button" (click)="closeModal()"
                                 class="px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-100 transition-colors">
                                 Cancelar
                             </button>
-                            <button
-                                type="button"
-                                (click)="saveSpecialty()"
+                            <button type="button" (click)="saveSpecialty()"
                                 class="px-4 py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors">
                                 {{ editMode ? 'Salvar Alterações' : 'Cadastrar Especialidade' }}
                             </button>
