@@ -1,20 +1,21 @@
 import { Routes } from '@angular/router';
-import { Login } from './features/login/login';
-import { Home } from './features/home/home';
-import { Schedule } from './features/schedule/schedule';
-import { UserProfile } from './features/user-profile/user-profile';
-import { MeusAgendamentos } from './features/paciente/meus-agendamentos/meus-agendamentos';
+import { LoginComponent } from './features/layout/login/login.component';
+import { HomeComponent } from './features/layout/home/home.component';
+import { ScheduleComponent } from './features/patient/schedule/schedule.component';
+import { ProfileComponent } from './features/patient/profile/profile.component';
+import { AppointmentsComponent } from './features/patient/appointments/appointments.component';
+import { AboutComponent } from './features/patient/about/about.component';
 
-// Importar componentes específicos do funcionário
-import { Dashboard } from './features/funcionario/dashboard/dashboard';
-import { Agendamentos } from './features/funcionario/agendamentos/agendamentos';
-import { Profissionais } from './features/funcionario/profissionais/profissionais';
-import { Especialidades } from './features/funcionario/especialidades/especialidades';
+// Import employee components
+import { DashboardComponent } from './features/employee/dashboard/dashboard.component';
+import { EmployeeAppointmentsComponent } from './features/employee/appointments/appointments.component';
+import { ProfessionalsComponent } from './features/employee/professionals/professionals.component';
+import { SpecialtiesComponent } from './features/employee/specialties/specialties.component';
 
 export const routes: Routes = [
     {
         path: 'login',
-        component: Login
+        component: LoginComponent
     },
     {
         path: '',
@@ -22,24 +23,25 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'paciente',
-        component: Home,
+        path: 'patient',
+        component: HomeComponent,
         children: [
-            { path: '', redirectTo: 'agendar', pathMatch: 'full' },
-            { path: 'agendar', component: Schedule },
-            { path: 'perfil', component: UserProfile },
-            { path: 'meus-agendamentos', component: MeusAgendamentos },
+            { path: '', redirectTo: 'schedule', pathMatch: 'full' },
+            { path: 'schedule', component: ScheduleComponent },
+            { path: 'profile', component: ProfileComponent },
+            { path: 'appointments', component: AppointmentsComponent },
+            { path: 'about', component: AboutComponent },
         ]
     },
     {
-        path: 'funcionario',
-        component: Home,
+        path: 'employee',
+        component: HomeComponent,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'dashboard', component: Dashboard },
-            { path: 'agendamentos', component: Agendamentos },
-            { path: 'profissionais', component: Profissionais },
-            { path: 'especialidades', component: Especialidades },
+            { path: 'dashboard', component: DashboardComponent },
+            { path: 'appointments', component: EmployeeAppointmentsComponent },
+            { path: 'professionals', component: ProfessionalsComponent },
+            { path: 'specialties', component: SpecialtiesComponent },
         ]
     },
     {

@@ -1,0 +1,340 @@
+<div class="min-h-screen bg-gray-50 p-4 md:p-6 lg:p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white border-b-4 border-teal-600 rounded-lg shadow-sm p-6 mb-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="flex items-center gap-4 flex-1">
+                    <!-- Logo TuaConsulta -->
+                    <div class="flex-shrink-0">
+                        <svg class="w-12 h-12 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">Sobre a Unidade de Saúde IAPI</h1>
+                        <p class="text-sm text-gray-600">Centro de Saúde/Unidade Básica de Saúde - Sistema Único de Saúde (SUS)</p>
+                    </div>
+                </div>
+                <button
+                    (click)="goBack()"
+                    class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-all flex items-center gap-2 self-start sm:self-auto border border-gray-300">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    <span>Voltar</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Informações Gerais -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900">Informações Gerais</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <p class="text-sm font-semibold text-gray-600 mb-1">Nome da Unidade</p>
+                    <p class="text-base text-gray-900 font-medium">Unidade de Saúde IAPI</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <p class="text-sm font-semibold text-gray-600 mb-1">Razão Social</p>
+                    <p class="text-base text-gray-900 font-medium">Prefeitura Municipal de Porto Alegre</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <p class="text-sm font-semibold text-gray-600 mb-1">CNES</p>
+                    <p class="text-base text-gray-900 font-medium">4314906883303</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <p class="text-sm font-semibold text-gray-600 mb-1">Tipo de Unidade</p>
+                    <p class="text-base text-gray-900 font-medium">Centro de Saúde/Unidade Básica</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Localização e Contato -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900">Localização e Contato</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    </svg>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-600">Endereço</p>
+                        <p class="text-base text-gray-900 font-medium">Rua Três de Abril, 90 - Passo da Areia</p>
+                        <p class="text-base text-gray-900 font-medium">Porto Alegre - RS, CEP: 90520-200</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-600">Telefones</p>
+                        <p class="text-base text-gray-900 font-medium">(51) 3289-3400 / (51) 3289-3457</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a href="https://www.google.com/maps/search/Rua+Tres+de+Abril+90+Porto+Alegre"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                    Ver no Google Maps
+                </a>
+            </div>
+        </div>
+
+        <!-- Horário de Atendimento -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900">Horário de Atendimento</h2>
+            </div>
+
+            <div class="space-y-2">
+                <div class="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
+                    <span class="text-gray-900 font-medium">Segunda-feira</span>
+                    <span class="text-gray-700 font-semibold">07:00 - 22:00</span>
+                </div>
+                <div class="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
+                    <span class="text-gray-900 font-medium">Terça-feira</span>
+                    <span class="text-gray-700 font-semibold">07:00 - 22:00</span>
+                </div>
+                <div class="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
+                    <span class="text-gray-900 font-medium">Quarta-feira</span>
+                    <span class="text-gray-700 font-semibold">07:00 - 22:00</span>
+                </div>
+                <div class="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
+                    <span class="text-gray-900 font-medium">Quinta-feira</span>
+                    <span class="text-gray-700 font-semibold">07:00 - 22:00</span>
+                </div>
+                <div class="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
+                    <span class="text-gray-900 font-medium">Sexta-feira</span>
+                    <span class="text-gray-700 font-semibold">07:00 - 22:00</span>
+                </div>
+            </div>
+
+            <div class="mt-4 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-lg">
+                <p class="text-sm text-gray-800">
+                    <strong class="block mb-1 text-gray-900">Importante:</strong>
+                    Os horários podem sofrer alterações. Entre em contato para confirmar a disponibilidade.
+                </p>
+            </div>
+        </div>
+
+        <!-- Especialidades Oferecidas -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900">Especialidades Oferecidas</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Agentes Comunitários de Saúde</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Atenção Primária</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Atendimento Básico de Saúde</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Clínico Geral</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Controle de Tabagismo</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Saúde Bucal / Odontologia</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Diagnóstico por Imagem</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Ginecologia e Obstetrícia</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Imunização / Vacinação</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Pré-natal / Parto e Nascimento</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Saúde da Família</span>
+                </div>
+                <div class="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-900">Medicina Nuclear</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Atividades do Estabelecimento -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800">Atividades do Estabelecimento</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="p-4 border-l-4 border-gray-600 bg-gray-50 rounded-lg">
+                    <h3 class="font-bold text-gray-900 mb-2">Consulta Ambulatorial</h3>
+                    <p class="text-sm text-gray-700">
+                        Atendimento dispensado a indivíduos cuja condição de saúde estável lhes permita comparecer ao estabelecimento e retornar ao local de origem,
+                        realizado por profissionais de saúde de nível superior, com a finalidade de fornecer parecer, instrução ou examinar determinada situação.
+                    </p>
+                </div>
+
+                <div class="p-4 border-l-4 border-gray-600 bg-gray-50 rounded-lg">
+                    <h3 class="font-bold text-gray-900 mb-2">Entrega e Dispensação de Medicamentos</h3>
+                    <p class="text-sm text-gray-700">
+                        Conjunto de ações relativas ao fornecimento de medicamentos diretamente ao paciente e a orientação para o seu uso racional,
+                        mediante apresentação de prescrição por profissional habilitado.
+                    </p>
+                </div>
+
+                <div class="p-4 border-l-4 border-gray-600 bg-gray-50 rounded-lg">
+                    <h3 class="font-bold text-gray-900 mb-2">Promoção da Saúde e Prevenção de Doenças</h3>
+                    <p class="text-sm text-gray-700">
+                        Conjunto de ações e serviços de saúde, de caráter individual ou coletivo, compreendendo práticas corporais, artísticas e culturais,
+                        práticas integrativas e complementares, atividades físicas, promoção da alimentação saudável e educação em saúde.
+                    </p>
+                </div>
+
+                <div class="p-4 border-l-4 border-gray-600 bg-gray-50 rounded-lg">
+                    <h3 class="font-bold text-gray-900 mb-2">Imunização</h3>
+                    <p class="text-sm text-gray-700">
+                        Conjunto de ações que objetivam a administração de vacinas para estimulação da resposta imune do hospedeiro,
+                        incluindo quaisquer preparações para a profilaxia imunológica ativa.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estrutura Física -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
+                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900">Estrutura Física</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <span class="text-gray-900 font-medium">Clínicas Especializadas</span>
+                    <span class="text-2xl font-bold text-gray-700">1</span>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <span class="text-gray-900 font-medium">Sala de Imunização</span>
+                    <span class="text-2xl font-bold text-gray-700">1</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sobre o TuaConsulta -->
+        <div class="bg-white rounded-lg shadow-sm border-l-4 border-teal-600 p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-teal-50 rounded-lg flex items-center justify-center">
+                    <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900">Sobre o TuaConsulta</h2>
+            </div>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                O <strong>TuaConsulta</strong> é um sistema de agendamento de consultas desenvolvido para facilitar o acesso da população aos serviços de saúde do SUS.
+                Nossa plataforma permite que pacientes agendem consultas de forma rápida e prática, contribuindo para a melhoria da gestão e do atendimento nas Unidades Básicas de Saúde.
+            </p>
+
+            <p class="text-gray-700 leading-relaxed">
+                Atualmente, o TuaConsulta está servindo a <strong>UBS IAPI</strong> no bairro Passo da Areia, em Porto Alegre - RS,
+                ajudando a organizar e otimizar o agendamento de consultas e procedimentos para toda a comunidade local.
+            </p>
+        </div>
+    </div>
+</div>
