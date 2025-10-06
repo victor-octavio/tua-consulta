@@ -39,6 +39,7 @@ O **Tua Consulta** é uma aplicação web desenvolvida para facilitar o agendame
 - Visualização de horários disponíveis
 - Confirmação de agendamento
 - Histórico de consultas agendadas
+- Interface do funcionário para criação e alteração de consultas, especialidades e profissionais
 
 
 ### ✅ Acessibilidade
